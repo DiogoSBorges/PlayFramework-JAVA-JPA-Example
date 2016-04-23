@@ -1,0 +1,76 @@
+@(saleForm: Form[SaleDTO], personParam: Map[String, String], productParam: Map[String, String], products: List[Product])
+@import helper._
+
+@main("New Sale") {
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                @form(action = routes.SaleController.save(), 'class -> "form-horizontal") {
+                    <fieldset>
+                        <legend>New Sale</legend>
+                        @select(
+                            saleForm("personClient.id"),
+                            options(personParam),
+                            '_label -> "Person Client:",
+                            '_default -> "-- Person Client --"
+                        )
+
+                        @inputText(saleForm("description"), '_label -> "Description:")
+                    </fieldset>
+                <div>
+                    <h3>Products</h3>
+                    <hr/>
+                    <br/>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <!-- Tentativa FOR -->
+                                    <select id="productSelect" class="form-control">
+                                        <option value=" ">Select</option>
+                                        @for(product <- products) {
+                                            <option value="@product.getId">@product.getName</option>
+                                        }
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <button id="addProductSale" type="button" class="btn btn-primary" >Add Product</button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div>
+                    </fieldset>
+                    <br/>
+                    <table class="table table-striped table-bordered" id="example" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <thead>
+                            <tr style="background-color : #357ebd ; color : white ;">
+                                <th class="col-sm-2" style="font-weight : normal ;">
+                                    Name
+                                </th>
+                                <th class="col-sm-6 text-center" style="font-weight : normal ;">
+                                    Description
+                                </th>
+                                <th class="col-sm-2 text-center" style="font-weight : normal ;">
+                                    Brand
+                                </th>
+                                <th class="col-sm-2 text-center" style="font-weight : normal ;">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JS increment here -->
+                        </tbody>
+
+                    </table>
+                </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 text-left">
+                            <button id="singlebutton" type="submit" name="singlebutton" class="btn btn-primary">Gravar</button>
+                            <a href="@routes.SaleController.list()" class="btn btn-primary"> Cancelar </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

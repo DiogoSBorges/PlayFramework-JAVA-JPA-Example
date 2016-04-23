@@ -1,0 +1,13 @@
+.menu-bar{
+	background-color: #FF4500;
+}
+
+.menu-bar a{
+	color: white !important;
+	transition: color 2s;
+}
+
+.menu-bar a:hover{
+	color:#808080 !important;
+	transition: color .5s;
+}

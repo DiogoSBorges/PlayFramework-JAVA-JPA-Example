@@ -1,0 +1,50 @@
+@(products: List[Product]) 
+@import helper._
+@main("Products") {
+<div class="container">
+	<div class="header">
+		<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="@routes.ProductController.newProduct()">New Product </a></li>
+		</ul>
+		<h3>Products</h3>
+		<hr>
+	</div>
+	<br/>
+	<table class="table table-striped table-bordered" id="example" cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tfoot>
+			<tr style="background-color:#357ebd; color:white;">
+				<th class="col-sm-2" style="font-weight:normal;">
+					Name
+				</th>
+				<th class="col-sm-6 text-center" style="font-weight:normal;">
+					Description
+				</th>
+				<th class="col-sm-2 text-center" style="font-weight:normal;">
+					Brand
+				</th>
+				<th class="col-sm-2 text-center" style="font-weight:normal;">
+					Action
+				</th>
+			</tr>
+			@for(product <- products) {
+			<tr>
+				<th class="col-sm-2" style="vertical-align: middle;" >
+					<a href="@routes.ProductController.detail(product.getId)"> @product.getName</a>
+				</th>
+				<th class="col-sm-6" style="vertical-align: middle;" >
+					@product.getDescription
+				</th>
+				<th class="col-sm-2 text-center" style="vertical-align: middle;" >
+					@product.getBrand
+				</th>
+				<th class="col-sm-2 text-center" style="vertical-align: middle;">		
+						@form(routes.ProductController.remove(product.getId)) {
+							<input type="submit" value="Remove" class="btn btn-danger"> 
+						}
+				</th>
+			</tr>
+			}
+		</tfoot>
+	</table>
+</div>
+}

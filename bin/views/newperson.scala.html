@@ -1,0 +1,55 @@
+@(personForm : Form[Person])
+
+@implicitField = @{ FieldConstructor(field.f) }
+@import helper._
+
+
+@main("New Person") {
+<!-- 
+@helper.input(personForm("namePerson")){ (id, name, value, args) =>
+<input type="text" name="@name" id="@id" @toHtmlArgs(args) class="teste"/>
+
+}
+ -->
+ 
+<div class="container">
+	<div class="header">
+	</div>
+	<div>
+		@helper.form(action=routes.PersonController.save()){
+			<form class="form-horizontal">
+			<fieldset>	
+			<legend>New Person</legend>		
+			<div class="control-group">
+				<div class="controls">
+				<!-- 
+					<div class="form-group">
+						 @helper.input(personForm("namePerson"), '_label -> ""){(id, name, value, args) =>
+						 	<label for="@id" class="col-sm-2 text-right control-label" style="vertical-align:middle;" >Name:</label>
+						 	<div class="col-sm-6">	
+								<input type="text" name="@name" id="@id" @toHtmlArgs(args) class="form-control" placeholder="Enter the person's name"/>
+							</div>
+						}
+					</div> 
+					<div class="form-group">
+						 @helper.input(personForm("agePerson"), '_label -> ""){ (id, name, value, args) =>
+						 <label for="@id" class="col-sm-2 text-right" style="vertical-align:middle;">Age:</label>
+						 	<div class="col-sm-6"> 
+								<input type="text" name="@name" id="@id" @toHtmlArgs(args) class="form-control" placeholder="Enter the person's age"/>
+							</div>
+						}
+					</div>   -->
+					@helper.inputText(personForm("namePerson"),'_label -> "Name:", 'placeholder -> "Enter the person's name", 'class->"form-control")
+					@helper.inputText(personForm("agePerson"),'_label -> "Age:", 'placeholder -> "Enter the person's age", 'class->"form-control")
+				</div>
+			</div>
+		}
+				<div class="control-group">
+					<label class="control-label" for="singlebutton"></label>
+					<div class="controls">
+						<button id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+	</div>
+	}
+	</div>

@@ -1,0 +1,20 @@
+@(id: Long, productForm: Form[Product]) 
+@import helper._
+@main("Change Product") {
+<div class="container">
+	<div class="header">
+	</div>
+	<h1>Change Product</h1>
+	@form(routes.ProductController.change(id)) {
+	<fieldset>@inputText(productForm("name"), '_label -> "Product's Name",'placeholder -> "Enter the product's name")</fieldset>
+	<fieldset>@inputText(productForm("description"), '_label -> "Product's Description", 'placeholder -> "Enter the product's description")</fieldset>
+	<fieldset>@inputText(productForm("brand"), '_label -> "Product's Brand", 'placeholder -> "Enter the product's brand")</fieldset>
+	<div class="control-group">
+		<div class="actions">
+			<input type="submit" value="Save" class="btn btn-primary"> 
+			<a href="@routes.ProductController.list()" class="btn btn-primary">Cancel </a> 
+	} 
+		</div>
+	</div>
+</div>
+}

@@ -1,0 +1,27 @@
+@(productForm : Form[Product])
+@main("New Product") {
+<div class="container">
+	<div class="header">
+	</div>
+	<div>
+		@helper.form(action=routes.ProductController.save()) {
+			<form class="form-horizontal">
+			<fieldset>	
+			<legend>New Product</legend>
+			<div class="control-group">
+				<div class="controls">
+					@helper.inputText(productForm("name"),'_label -> "Name:", 'placeholder -> "Enter the product's name")
+					@helper.inputText(productForm("description"),'_label -> "Description:", 'placeholder -> "Enter the product's description")
+					@helper.inputText(productForm("brand"),'_label -> "Brand:", 'placeholder -> "Enter the product's brand")
+				</div>
+			</div>
+		}
+		<div class="control-group">
+			<label class="control-label" for="singlebutton"></label>
+			<div class="controls">
+				<button id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</div>
+	}
+	</div>

@@ -1,0 +1,19 @@
+@(id: Long, personForm: Form[Person]) 
+@import helper._
+@main("Change Person") {
+<div class="container">
+	<div class="header">
+	</div>
+	<h1>Change Person</h1>
+	@form(routes.PersonController.change(id)) {
+	<fieldset>@inputText(personForm("namePerson"), '_label -> "Persons Name",'placeholder -> "Enter the person's name")</fieldset>
+	<fieldset>@inputText(personForm("agePerson"), '_label -> "Persons Age", 'placeholder -> "Enter the person's age")</fieldset>
+	<div class="control-group">
+		<div class="actions">
+			<input type="submit" value="Save" class="btn btn-primary"> 
+			<a href="@routes.PersonController.list()" class="btn btn-primary">Cancel </a> 
+	} 
+		</div>
+	</div>
+</div>
+}

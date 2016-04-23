@@ -1,0 +1,44 @@
+@(sales: List[Sale]) 
+@import helper._
+@main("Sales") {
+<div class="container">
+	<div class="header">
+		<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="@routes.SaleController.newSale()">New Sale</a></li>
+		</ul>
+		<h3>Sales</h3>
+		<hr>
+	</div>
+	<br/>
+	<table class="table table-striped table-bordered" id="example" cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tfoot>
+			<tr style="background-color:#357ebd; color:white;">
+				<th class="col-sm-5" style="font-weight:normal;">
+					Name Person Client
+				</th>
+				<th class="col-sm-5 text-center" style="font-weight:normal;">
+					Description
+				</th>
+				<th class="col-sm-2 text-center" style="font-weight:normal;">
+					Action
+				</th>
+			</tr>
+			@for(sale <- sales) {
+			<tr>
+				<th class="col-sm-9" style="vertical-align: middle;" >
+					<a href="@routes.SaleController.detail(sale.getId)"> @sale.getPersonClient().getNamePerson()</a>
+				</th>
+				<th class="col-sm-1 text-center" style="vertical-align: middle;" >
+					@sale.getDescription 
+				</th>
+				<th class="col-sm-2 text-center" style="vertical-align: middle;">		
+						@form(routes.SaleController.remove(sale.getId)) {
+							<input type="submit" value="Remove" class="btn btn-danger"> 
+						}
+				</th>
+			</tr>
+			}
+		</tfoot>
+	</table>
+</div>
+}
